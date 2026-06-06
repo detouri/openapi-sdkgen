@@ -19,6 +19,9 @@
     "verify": "npm test",
     "prepublishOnly": "npm run verify"
   },
+  "repository": {
+    "url": "https://github.com/detouri/openapi-sdkgen.git"
+  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
