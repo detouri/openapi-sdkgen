@@ -1,0 +1,124 @@
+=== client.ts ===
+import type { CreateUserParams, CreateUserRequestBody, GetUserParams } from "./requests"
+
+import type { CreateUserResponse, GetUserResponse } from "./responses"
+
+export interface GeneratedApiClient {
+  getUser(params: GetUserParams): Promise<GetUserResponse>
+  createUser(params: CreateUserParams, body: CreateUserRequestBody): Promise<CreateUserResponse>
+}
+
+=== index.ts ===
+export * from "./models"
+export * from "./requests"
+export * from "./responses"
+export * from "./operations"
+export * from "./client"
+export * from "./metadata"
+
+=== metadata.ts ===
+export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD" | "OPTIONS"
+
+export interface EndpointMetadata {
+  operationId: string
+  method: HttpMethod
+  path: string
+}
+
+export const getUserMetadata: EndpointMetadata = {
+  operationId: "getUser",
+  method: "GET",
+  path: "/users/{id}",
+}
+
+export const createUserMetadata: EndpointMetadata = {
+  operationId: "createUser",
+  method: "POST",
+  path: "/users",
+}
+
+=== models.ts ===
+export interface User {
+  id: string
+  name: string
+  manager?: User
+  roles?: Array<string>
+}
+
+export interface CreateUserInput {
+  name: string
+  managerId?: string
+  role?: "admin" | "editor" | "viewer"
+}
+
+export interface ErrorModel {
+  message: string
+  code?: number
+}
+
+=== operations.ts ===
+import type { CreateUserParams, CreateUserRequestBody, GetUserParams } from "./requests"
+
+import type { CreateUserResponse, GetUserResponse } from "./responses"
+
+export interface OperationTypes {
+  getUser: {
+    params: GetUserParams
+    requestBody: never
+    response: GetUserResponse
+  }
+  createUser: {
+    params: CreateUserParams
+    requestBody: CreateUserRequestBody
+    response: CreateUserResponse
+  }
+}
+
+=== requests.ts ===
+import type { CreateUserInput } from "./models"
+
+/**
+ * Fetch one user
+ */
+export interface GetUserParams {
+  id: string
+  includeDetails?: boolean
+}
+
+/**
+ * Create one user
+ */
+export interface CreateUserParams {
+}
+
+/**
+ * Request body for createUser
+ */
+export type CreateUserRequestBody = CreateUserInput
+
+=== responses.ts ===
+import type { ErrorModel, User } from "./models"
+
+/**
+ * Response body for getUser 200
+ */
+export type GetUserResponse200 = User
+
+/**
+ * Response body for getUser 404
+ */
+export type GetUserResponse404 = ErrorModel
+
+export type GetUserResponse = { status: 200; data: GetUserResponse200 } | { status: 404; data: GetUserResponse404 }
+
+/**
+ * Response body for createUser 201
+ */
+export type CreateUserResponse201 = User
+
+/**
+ * Response body for createUser 400
+ */
+export type CreateUserResponse400 = ErrorModel
+
+export type CreateUserResponse = { status: 201; data: CreateUserResponse201 } | { status: 400; data: CreateUserResponse400 }

@@ -1,0 +1,33 @@
+{
+  "name": "openapi-sdkgen",
+  "version": "0.1.0",
+  "description": "Language-agnostic OpenAPI SDK generator with TypeScript and Go outputs.",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "openapi-sdkgen": "./src/cli.js"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "verify": "npm test",
+    "prepublishOnly": "npm run verify"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "packageManager": "npm@11.6.2",
+  "dependencies": {
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

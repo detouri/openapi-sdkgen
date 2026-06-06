@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: Collision API
+  version: 1.0.0
+paths:
+  /users/{id}:
+    get:
+      operationId: getUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetUserResponse"
+  /users/by-email:
+    get:
+      operationId: getUser
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /client:
+    post:
+      operationId: generatedApiClient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GeneratedApiClient"
+      responses:
+        "201":
+          description: created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Client"
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+    Client:
+      type: object
+      properties:
+        user:
+          $ref: "#/components/schemas/User"
+    GeneratedApiClient:
+      type: object
+      properties:
+        client:
+          $ref: "#/components/schemas/Client"
+    GetUserParams:
+      type: object
+      properties:
+        existing:
+          type: string
+    GetUserResponse:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/User"
+    HttpMethod:
+      type: string
+      enum:
+        - custom
+    EndpointMetadata:
+      type: object
+      properties:
+        operationId:
+          type: string

@@ -1,0 +1,38 @@
+openapi: 3.0.3
+info:
+  title: Comment Escape API
+  version: 1.0.0
+paths:
+  /notes/{id}:
+    get:
+      operationId: getNote
+      summary: "Fetch note with */ inside summary"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "Primary id contains */ delimiter"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Response contains */ delimiter"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Note"
+components:
+  schemas:
+    Note:
+      type: object
+      description: "Schema docs contain */ delimiter"
+      required:
+        - id
+        - body
+      properties:
+        id:
+          type: string
+          description: "Identifier has */ marker"
+        body:
+          type: string
+          description: "Body text can mention */ safely"

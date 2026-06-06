@@ -1,0 +1,21 @@
+openapi: 3.0.3
+info:
+  title: Recursive Go API
+  version: 1.0.0
+paths:
+  /tree:
+    get:
+      operationId: getTree
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NodeList"
+components:
+  schemas:
+    NodeList:
+      type: array
+      items:
+        $ref: "#/components/schemas/NodeList"
