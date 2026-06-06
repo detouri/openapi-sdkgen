@@ -1,5 +1,5 @@
 {
-  "name": "openapi-sdkgen",
+  "name": "@detouri/openapi-sdkgen",
   "version": "0.1.0",
   "description": "Language-agnostic OpenAPI SDK generator with TypeScript and Go outputs.",
   "type": "module",

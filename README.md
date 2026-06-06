@@ -1,6 +1,6 @@
-# openapi-sdkgen
+# @detouri/openapi-sdkgen
 
-`openapi-sdkgen` generates SDK-oriented output from OpenAPI 3.x documents.
+`@detouri/openapi-sdkgen` generates SDK-oriented output from OpenAPI 3.x documents.
 
 Current generators:
 
@@ -13,7 +13,7 @@ Current generators:
 ## Install
 
 ```bash
-npm install openapi-sdkgen
+npm install @detouri/openapi-sdkgen
 ```
 
 ## CLI
@@ -29,7 +29,7 @@ openapi-sdkgen generate \
 Run it without installing:
 
 ```bash
-npx openapi-sdkgen generate \
+npx @detouri/openapi-sdkgen generate \
   --input ./openapi.yaml \
   --language typescript \
   --output ./generated \
@@ -49,7 +49,7 @@ openapi-sdkgen generate \
 With `npx`:
 
 ```bash
-npx openapi-sdkgen generate \
+npx @detouri/openapi-sdkgen generate \
   --input ./openapi.yaml \
   --language golang \
   --output ./generated \
@@ -59,7 +59,7 @@ npx openapi-sdkgen generate \
 ## Library
 
 ```js
-import { generateSdk } from "openapi-sdkgen";
+import { generateSdk } from "@detouri/openapi-sdkgen";
 
 await generateSdk({
   input: "./openapi.yaml",
