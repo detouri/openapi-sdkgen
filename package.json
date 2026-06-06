@@ -2,6 +2,14 @@
   "name": "@detouri/openapi-sdkgen",
   "version": "0.1.0",
   "description": "Language-agnostic OpenAPI SDK generator with TypeScript and Go outputs.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/detouri/openapi-sdkgen"
+  },
+  "homepage": "https://github.com/detouri/openapi-sdkgen",
+  "bugs": {
+    "url": "https://github.com/detouri/openapi-sdkgen/issues"
+  },
   "type": "module",
   "main": "./src/index.js",
   "exports": {
@@ -18,9 +26,6 @@
     "test": "node --test",
     "verify": "npm test",
     "prepublishOnly": "npm run verify"
-  },
-  "repository": {
-    "url": "https://github.com/detouri/openapi-sdkgen.git"
   },
   "publishConfig": {
     "access": "public",
